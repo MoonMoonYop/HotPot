@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel on Spot – Menginap di Pusat Kota</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap flex items-center justify-between h-[72px]">
+    <a href="#home" class="serif text-3xl">Hotel <span class="gold">on</span> Spot</a>
+    <nav class="nav hidden lg:flex gap-7" id="nav"></nav>
+    <button id="burger" class="lg:hidden p-2" aria-label="Buka menu" aria-expanded="false">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+  <nav id="mnav" class="nav lg:hidden hidden flex-col gap-4 px-6 py-5"></nav>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="view" id="v-home">
+  <div class="hero">
+    <div id="slides"></div>
+    <div class="wrap w-full">
+      <p class="mb-4 tracking-wide" style="color:var(--gold2)">Bintang lima di jantung kota</p>
+      <h1 class="text-4xl md:text-7xl max-w-4xl">Hotel on Spot – Pengalaman Menginap Tak Terlupakan di Pusat Kota</h1>
+      <p class="mt-6 max-w-xl text-lg">Penawaran eksklusif dan kenyamanan kelas dunia, untuk liburan maupun perjalanan bisnis.</p>
+      <div class="mt-9 flex flex-wrap gap-3"><a class="btn" href="#booking">Pesan kamar</a><a class="btn btn-w" href="#fasilitas">Lihat fasilitas</a></div>
+    </div>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="wrap quick">
+    <form id="quick" class="card p-5 grid gap-4 md:grid-cols-4 items-end shadow-xl">
+      <div><label for="qin">Check-in</label><input type="date" id="qin"></div>
+      <div><label for="qout">Check-out</label><input type="date" id="qout"></div>
+      <div><label for="qg">Jumlah tamu</label><input type="number" id="qg" min="1" max="6" value="2"></div>
+      <button class="btn" type="submit">Cek ketersediaan</button>
+    </form>
+  </div>
+
+  <div class="sec wrap">
+    <h2 class="title rv">Pilihan kamar</h2><div class="rule"></div>
+    <div class="grid gap-7 md:grid-cols-3" id="room-prev"></div>
+  </div>
+
+  <div class="sec" style="background:var(--surface)">
+    <div class="wrap">
+      <h2 class="title rv">Fasilitas unggulan</h2><div class="rule"></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="fac-prev"></div>
+      <p class="mt-8 max-w-2xl mute">Tamu dilayani dengan ramah dan aman. Security siap membantu dan menjaga keamanan selama menginap, sementara resepsionis siap membantu bila ada kendala di kamar maupun di area hotel.</p>
+    </div>
+  </div>
+
+  <div class="sec wrap">
+    <h2 class="title rv">Ulasan terbaru</h2><div class="rule"></div>
+    <div class="grid gap-6 md:grid-cols-3" id="reviews"></div>
+    <a class="btn btn-o mt-8" href="#ulasan">Tulis ulasan</a>
+  </div>
+
+  <div class="sec wrap grid gap-10 md:grid-cols-2" style="padding-top:0">
+    <div class="rv">
+      <h2 class="title">Lokasi</h2><div class="rule"></div>
+      <p>Jl. MH Thamrin No. 1, Jakarta Pusat</p>
+      <div class="card p-6 mt-5 space-y-3">
+        <p class="serif text-2xl">Petunjuk arah</p>
+        <p><b class="font-medium">Dari Bandara Soekarno-Hatta:</b> Kereta Bandara ke Stasiun BNI City (±55 menit), lanjut taksi atau jalan kaki sekitar 10 menit. Dengan mobil via tol dalam kota sekitar 45–60 menit.</p>
+        <p><b class="font-medium">Dari Stasiun Gambir:</b> sekitar 15 menit dengan taksi online.</p>
+        <p><b class="font-medium">Dari MRT:</b> turun di Stasiun Bundaran HI, lalu berjalan kaki beberapa menit.</p>
+      </div>
+    </div>
+    <div class="rv">
+      <iframe title="Peta Hotel on Spot" class="w-full card" style="height:440px" loading="lazy" src="https://www.google.com/maps?q=Jl.+MH+Thamrin+No.+1,+Jakarta+Pusat&output=embed"></iframe>
+      <a class="btn btn-o mt-3" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jl.+MH+Thamrin+No.+1+Jakarta+Pusat">Buka di Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- FASILITAS -->
+<section class="view" id="v-fasilitas">
+  <div class="ph" style="height:340px"><img id="fh" alt=""><div class="wrap" style="position:absolute;z-index:2;bottom:2.5rem;left:50%;transform:translateX(-50%);width:100%"><h1 class="title">Fasilitas</h1><p class="mt-2">Lounge, bar, kolam renang, dan lainnya, lengkap dengan jam operasional.</p></div></div>
+  <div class="sec wrap space-y-20" id="fac-list"></div>
+  <div class="wrap pb-20"><h2 class="title">Layanan tambahan</h2><div class="rule"></div><div class="grid gap-4 md:grid-cols-3" id="lay-list"></div></div>
+</section>
+
+<!-- RESTO -->
+<section class="view" id="v-resto">
+  <div class="wrap pt-28 grid grid-cols-2 md:grid-cols-4 gap-3" id="gallery"></div>
+  <div class="sec wrap">
+    <h1 class="title">Restaurant &amp; Bar/Lounge</h1><div class="rule"></div>
+    <div class="card p-6 grid gap-5 md:grid-cols-2">
+      <div><p class="serif text-2xl">Reservasi meja</p><a class="gold text-2xl serif" href="tel:+62211234567">(021) 123-4567</a><p class="text-sm mute">Restoran &amp; Lounge, setiap hari</p></div>
+      <div><p class="serif text-2xl">Room service</p><a class="gold text-2xl serif" href="tel:+62211234568">(021) 123-4568 ext. 9</a><p class="text-sm mute">Diantar langsung ke kamar hotel</p></div>
+    </div>
+    <div class="tabs flex flex-wrap gap-2 mt-12" id="mtabs"></div>
+    <div class="grid gap-12 md:grid-cols-2 mt-8" id="menus"></div>
+  </div>
+</section>
+
+<!-- BOOKING: daftar kamar + form reservasi -->
+<section class="view" id="v-booking">
+  <div class="sec wrap" style="padding-top:8rem">
+    <h1 class="title">Booking / Kamar</h1><div class="rule"></div>
+    <p class="mb-10 max-w-2xl mute">Check-in mulai pukul <span class="ci-t"></span>, check-out paling lambat pukul <span class="co-t"></span>.</p>
+    <div class="grid gap-7 lg:grid-cols-3" id="rooms"></div>
+
+    <div class="grid gap-10 lg:grid-cols-5 mt-20" id="form-area">
+      <form id="bf" class="card p-7 lg:col-span-3 grid gap-4 md:grid-cols-2" novalidate>
+        <h2 class="title md:col-span-2" style="font-size:2.2rem">Form reservasi</h2>
+        <div><label for="ci">Tanggal check-in</label><input type="date" id="ci"></div>
+        <div><label for="co">Tanggal check-out</label><input type="date" id="co"></div>
+        <div><label for="rt">Tipe kamar</label><select id="rt"></select></div>
+        <div><label for="gs">Jumlah tamu</label><input type="number" id="gs" min="1" max="6" value="2"></div>
+        <div><label for="nm">Nama lengkap tamu</label><input id="nm" autocomplete="name"></div>
+        <div><label for="hp">No. telepon / WhatsApp</label><input id="hp" type="tel" placeholder="08xxxxxxxxxx" autocomplete="tel"></div>
+        <div><label for="em">Email</label><input id="em" type="email" autocomplete="email"></div>
+        <div><label for="idn">No. identitas KTP/paspor (opsional)</label><input id="idn" inputmode="numeric"></div>
+        <div class="md:col-span-2"><label for="al">Alamat (opsional)</label><input id="al" autocomplete="street-address"></div>
+        <div><label for="pr">Kode promo (opsional)</label><input id="pr" placeholder="SPOT10 / LIBURAN15"></div>
+        <div><label for="rq">Permintaan khusus (opsional)</label><input id="rq"></div>
+        <p id="err" class="md:col-span-2 text-sm" style="color:#c0392b" role="alert"></p>
+        <button class="btn md:col-span-2" type="submit">Buat reservasi &amp; lanjut ke pembayaran</button>
+      </form>
+      <aside class="lg:col-span-2 space-y-5">
+        <div class="card p-6"><p class="serif text-2xl mb-2">Ringkasan</p><div id="sum" class="mute">Pilih tanggal dan tipe kamar untuk melihat ketersediaan dan estimasi biaya.</div></div>
+        <div class="card p-6"><p class="serif text-2xl mb-2">Kebijakan pembatalan</p><p class="mute">Pembatalan gratis hingga 48 jam sebelum check-in; setelahnya dikenakan biaya satu malam. Dana yang sudah dibayarkan dikembalikan melalui metode pembayaran semula dalam 3–7 hari kerja.</p></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- PEMBAYARAN -->
+<section class="view" id="v-bayar"><div class="sec wrap" style="padding-top:8rem;max-width:880px"><h1 class="title">Pembayaran</h1><div class="rule"></div><div id="bayar-box"></div></div></section>
+
+<!-- KONFIRMASI / CEK PESANAN -->
+<section class="view" id="v-pesanan"><div class="sec wrap" style="padding-top:8rem;max-width:880px">
+  <h1 class="title">Cek Pesanan</h1><div class="rule"></div>
+  <form id="cf" class="flex gap-3 flex-wrap"><input id="ck" placeholder="Kode booking, contoh: HOS-D3M004" style="flex:1;min-width:220px"><button class="btn" type="submit">Cari</button></form>
+  <div id="pesanan-box" class="mt-8"></div>
+</div></section>
+
+<!-- ULASAN -->
+<section class="view" id="v-ulasan"><div class="sec wrap" style="padding-top:8rem">
+  <h1 class="title">Ulasan</h1><div class="rule"></div>
+  <div class="grid gap-10 lg:grid-cols-5">
+    <form id="uf" class="card p-7 lg:col-span-2 grid gap-4" novalidate>
+      <h2 class="serif text-3xl">Tulis ulasan</h2>
+      <p class="text-sm mute">Ulasan dapat ditulis setelah check-out, memakai kode booking Anda.</p>
+      <div><label for="uk">Kode booking</label><input id="uk" placeholder="HOS-XXXXXX"></div>
+      <div><label for="ur">Rating</label><select id="ur"><option value="5">★★★★★ – Sangat baik</option><option value="4">★★★★ – Baik</option><option value="3">★★★ – Cukup</option><option value="2">★★ – Kurang</option><option value="1">★ – Buruk</option></select></div>
+      <div><label for="ukm">Komentar</label><textarea id="ukm" rows="4"></textarea></div>
+      <p id="uerr" class="text-sm" style="color:#c0392b" role="alert"></p>
+      <button class="btn" type="submit">Kirim ulasan</button>
+    </form>
+    <div class="lg:col-span-3 space-y-4" id="ulasan-list"></div>
+  </div>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap py-16 grid gap-10 md:grid-cols-3">
+    <div><p class="serif text-3xl" style="color:var(--gold2)">Hotel on Spot</p><p class="mt-3 text-sm">Menginap nyaman di jantung kota, dengan lounge, bar, kolam renang, dan pelayanan ramah setiap saat.</p></div>
+    <div class="text-sm space-y-1"><p class="serif text-2xl mb-2">Kontak &amp; jam</p><p>Jl. MH Thamrin No. 1, Jakarta Pusat</p><p>Telepon: (021) 123-4567</p><p>Email: reservasi@hotelonspot.id</p><p>Check-in mulai <span class="ci-t"></span> · Check-out paling lambat <span class="co-t"></span></p><p class="pt-2"><a href="admin.html" style="color:var(--gold2)">Login Admin</a></p></div>
+    <div><p class="serif text-2xl mb-3">Ikuti kami</p><div class="flex gap-3" id="soc"></div></div>
+  </div>
+  <p class="text-center text-xs pb-6" style="color:#a9a193">© 2026 Hotel on Spot. Semua hak dilindungi.</p>
+</footer>
+
+<button id="top" aria-label="Kembali ke atas">↑</button>
+<div id="toast" role="status"></div>
+<div class="ov" id="ov"><button class="x" aria-label="Tutup">×</button><div id="ovc" style="position:relative;max-width:100%;width:100%;display:flex;justify-content:center"></div></div>
+
+<script src="db.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

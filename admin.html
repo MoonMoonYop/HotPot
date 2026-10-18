@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin – Hotel on Spot</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="login" class="min-h-screen flex items-center justify-center p-5">
+  <form id="lf" class="card p-8 w-full max-w-sm grid gap-4">
+    <p class="serif text-4xl text-center">Hotel <span class="gold">on</span> Spot</p>
+    <p class="text-center mute -mt-2">Login pengelola</p>
+    <div><label for="u">Username</label><input id="u" autocomplete="username"></div>
+    <div><label for="p">Password</label><input id="p" type="password" autocomplete="current-password"></div>
+    <p id="le" class="text-sm" style="color:#c0392b" role="alert"></p>
+    <button class="btn" type="submit">Masuk</button>
+    <p class="text-xs mute">Demo: <b>admin</b> / admin123 (akses penuh) · <b>resepsionis</b> / resep123 (tanpa kelola tipe kamar)</p>
+    <a href="index.html" class="text-sm gold text-center">← Kembali ke website</a>
+  </form>
+</section>
+
+<div id="app" hidden>
+  <header class="adm-top">
+    <button id="mburger" class="lg:hidden" aria-label="Menu" style="background:none;border:0;color:#fff;font-size:1.6rem">☰</button>
+    <p class="serif text-2xl">Hotel <span class="gold">on</span> Spot <span class="text-sm" style="font-family:Jost;color:#a9a193">Admin</span></p>
+    <div class="flex items-center gap-3 text-sm"><span id="who"></span><button class="btn btn-o" id="out" style="padding:.4rem 1rem">Keluar</button></div>
+  </header>
+  <div class="adm-wrap">
+    <aside class="adm-side" id="side"></aside>
+    <main class="adm-main" id="main"></main>
+  </div>
+</div>
+
+<div class="ov" id="ov"><div id="ovc" class="card p-6 w-full" style="max-width:460px"></div></div>
+<div id="toast" role="status"></div>
+
+<script src="db.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
