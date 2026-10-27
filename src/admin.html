@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin – Hotel on Spot</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: 'Jost', sans-serif; background-color: #f5efe4; color: #2b2a28; }
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+</style>
+</head>
+<body class="bg-[#f5efe4] text-[#2b2a28] font-light antialiased">
+
+<section id="login" class="min-h-screen flex items-center justify-center p-5">
+  <form id="lf" class="bg-[#fffdf9] border border-[#e3d9c6] p-8 w-full max-w-sm grid gap-4 shadow-xl">
+    <p class="font-serif text-4xl text-center font-semibold">Hotel <span class="text-[#b08a3e]">on</span> Spot</p>
+    <p class="text-center text-[#6d675d] -mt-2 text-sm">Login pengelola</p>
+    <div><label for="u" class="text-sm block mb-1">Username</label><input id="u" autocomplete="username" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+    <div><label for="p" class="text-sm block mb-1">Password</label><input id="p" type="password" autocomplete="current-password" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+    <p id="le" class="text-sm text-red-600 font-medium" role="alert"></p>
+    <button class="bg-[#b08a3e] text-[#1b1a17] py-3 font-medium border border-[#b08a3e] cursor-pointer transition hover:bg-[#d6b36a]" type="submit">Masuk</button>
+    <p class="text-xs text-[#6d675d]">Demo: <b>admin</b> / admin123 (akses penuh) · <b>resepsionis</b> / resep123 (tanpa kelola tipe kamar)</p>
+    <a href="index.html" class="text-sm text-[#b08a3e] text-center hover:underline">← Kembali ke website</a>
+  </form>
+</section>
+
+<div id="app" hidden class="min-h-screen flex flex-col">
+  <header class="sticky top-0 z-60 flex items-center justify-between gap-4 py-4 px-5 bg-[#23211e] text-white shadow-md">
+    <button id="mburger" class="lg:hidden bg-transparent border-0 text-white text-2xl cursor-pointer" aria-label="Menu">☰</button>
+    <p class="font-serif text-2xl font-semibold">Hotel <span class="text-[#b08a3e]">on</span> Spot <span class="text-sm font-sans font-normal text-stone-400">Admin</span></p>
+    <div class="flex items-center gap-3 text-sm"><span id="who" class="text-stone-300"></span><button class="bg-transparent text-[#b08a3e] border border-[#b08a3e] px-4 py-1.5 font-medium cursor-pointer transition hover:bg-[#b08a3e] hover:text-[#1b1a17]" id="out">Keluar</button></div>
+  </header>
+  <div class="flex flex-1 min-h-[calc(100vh-64px)] relative">
+    <aside class="w-[230px] shrink-0 bg-[#fffdf9] border-r border-[#e3d9c6] py-4 fixed lg:static top-[64px] bottom-0 left-0 z-50 -translate-x-full lg:translate-x-0 transition-transform duration-300 [&.open]:translate-x-0" id="side"></aside>
+    <main class="flex-1 min-w-0 p-6 md:p-8" id="main"></main>
+  </div>
+</div>
+
+<div class="fixed inset-0 z-80 bg-black/80 hidden items-center justify-center p-4 backdrop-blur-sm [&.on]:flex" id="ov"><div id="ovc" class="bg-[#fffdf9] border border-[#e3d9c6] p-6 w-full max-w-[460px] relative shadow-2xl"></div></div>
+<div id="toast" role="status" class="fixed left-1/2 bottom-6 -translate-x-1/2 bg-[#23211e] text-white px-5 py-3 z-90 hidden shadow-2xl rounded text-sm font-medium"></div>
+
+<script src="db.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

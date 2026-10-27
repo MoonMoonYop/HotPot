@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hotel on Spot – Menginap di Pusat Kota</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: 'Jost', sans-serif; background-color: #f5efe4; color: #2b2a28; }
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+</style>
+</head>
+<body class="bg-[#f5efe4] text-[#2b2a28] font-light antialiased selection:bg-[#b08a3e] selection:text-white">
+
+<header id="hdr" class="fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300">
+  <div class="max-w-[1160px] mx-auto px-5 flex items-center justify-between h-[72px]">
+    <a href="#home" class="font-serif text-3xl font-semibold tracking-wide">Hotel <span class="text-[#b08a3e]">on</span> Spot</a>
+    <nav class="hidden lg:flex gap-7 items-center text-[0.95rem]" id="nav"></nav>
+    <button id="burger" class="lg:hidden p-2 text-white cursor-pointer" aria-label="Buka menu" aria-expanded="false">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7h18M3 12h18M3 17h18"/></svg>
+    </button>
+  </div>
+  <nav id="mnav" class="lg:hidden hidden flex-col gap-4 px-6 py-5 bg-[#fffdf9] text-[#2b2a28] border-b border-[#e3d9c6] shadow-lg"></nav>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="view hidden [&.on]:block" id="v-home">
+  <div class="relative min-h-screen flex items-end text-white overflow-hidden bg-[#2b2418]">
+    <div id="slides" class="absolute inset-0"></div>
+    <div class="max-w-[1160px] mx-auto px-5 w-full relative z-10 pb-28 pt-32">
+      <p class="mb-4 tracking-wide text-[#d6b36a] font-medium">Bintang lima di jantung kota</p>
+      <h1 class="font-serif text-4xl md:text-7xl font-bold max-w-4xl leading-tight">Hotel on Spot – Pengalaman Menginap Tak Terlupakan di Pusat Kota</h1>
+      <p class="mt-6 max-w-xl text-lg text-stone-200">Penawaran eksklusif dan kenyamanan kelas dunia, untuk liburan maupun perjalanan bisnis.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a class="inline-block bg-[#b08a3e] text-[#1b1a17] px-7 py-3.5 font-medium border border-[#b08a3e] cursor-pointer transition hover:bg-[#d6b36a] hover:-translate-y-0.5 shadow-md" href="#booking">Pesan kamar</a>
+        <a class="inline-block bg-transparent text-white border border-white px-7 py-3.5 font-medium cursor-pointer transition hover:bg-white hover:text-[#1b1a17]" href="#fasilitas">Lihat fasilitas</a>
+      </div>
+    </div>
+    <div id="dots" class="absolute z-20 right-6 bottom-28 flex gap-2"></div>
+  </div>
+
+  <div class="max-w-[1160px] mx-auto px-5 relative z-25 -mt-12">
+    <form id="quick" class="bg-[#fffdf9] border border-[#e3d9c6] p-6 grid gap-4 md:grid-cols-4 items-end shadow-2xl">
+      <div><label for="qin" class="text-sm font-normal block mb-1 text-[#2b2a28]">Check-in</label><input type="date" id="qin" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 text-[#2b2a28] focus:outline-none focus:border-[#b08a3e] focus:ring-2 focus:ring-[#b08a3e]/20"></div>
+      <div><label for="qout" class="text-sm font-normal block mb-1 text-[#2b2a28]">Check-out</label><input type="date" id="qout" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 text-[#2b2a28] focus:outline-none focus:border-[#b08a3e] focus:ring-2 focus:ring-[#b08a3e]/20"></div>
+      <div><label for="qg" class="text-sm font-normal block mb-1 text-[#2b2a28]">Jumlah tamu</label><input type="number" id="qg" min="1" max="6" value="2" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 text-[#2b2a28] focus:outline-none focus:border-[#b08a3e] focus:ring-2 focus:ring-[#b08a3e]/20"></div>
+      <button class="bg-[#b08a3e] text-[#1b1a17] p-3 font-medium border border-[#b08a3e] cursor-pointer transition hover:bg-[#d6b36a] h-[50px] shadow-sm" type="submit">Cek ketersediaan</button>
+    </form>
+  </div>
+
+  <div class="py-20 max-w-[1160px] mx-auto px-5">
+    <h2 class="font-serif text-3xl md:text-5xl font-semibold">Pilihan kamar</h2>
+    <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+    <div class="grid gap-7 md:grid-cols-3" id="room-prev"></div>
+  </div>
+
+  <div class="py-20 bg-[#fffdf9] border-y border-[#e3d9c6]">
+    <div class="max-w-[1160px] mx-auto px-5">
+      <h2 class="font-serif text-3xl md:text-5xl font-semibold">Fasilitas unggulan</h2>
+      <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="fac-prev"></div>
+      <p class="mt-8 max-w-2xl text-[#6d675d]">Tamu dilayani dengan ramah dan aman. Security siap membantu dan menjaga keamanan selama menginap, sementara resepsionis siap membantu bila ada kendala di kamar maupun di area hotel.</p>
+    </div>
+  </div>
+
+  <div class="py-20 max-w-[1160px] mx-auto px-5">
+    <h2 class="font-serif text-3xl md:text-5xl font-semibold">Ulasan terbaru</h2>
+    <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+    <div class="grid gap-6 md:grid-cols-3" id="reviews"></div>
+    <a class="inline-block bg-transparent text-[#b08a3e] border border-[#b08a3e] px-7 py-3 font-medium cursor-pointer transition hover:bg-[#b08a3e] hover:text-[#1b1a17] mt-8" href="#ulasan">Tulis ulasan</a>
+  </div>
+
+  <div class="pb-20 max-w-[1160px] mx-auto px-5 grid gap-10 md:grid-cols-2">
+    <div>
+      <h2 class="font-serif text-3xl md:text-5xl font-semibold">Lokasi</h2>
+      <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+      <p class="text-stone-700">Jl. MH Thamrin No. 1, Jakarta Pusat</p>
+      <div class="bg-[#fffdf9] border border-[#e3d9c6] p-6 mt-5 space-y-3 shadow-sm">
+        <p class="font-serif text-2xl font-semibold">Petunjuk arah</p>
+        <p class="text-stone-700"><b class="font-medium">Dari Bandara Soekarno-Hatta:</b> Kereta Bandara ke Stasiun BNI City (±55 menit), lanjut taksi atau jalan kaki sekitar 10 menit. Dengan mobil via tol dalam kota sekitar 45–60 menit.</p>
+        <p class="text-stone-700"><b class="font-medium">Dari Stasiun Gambir:</b> sekitar 15 menit dengan taksi online.</p>
+        <p class="text-stone-700"><b class="font-medium">Dari MRT:</b> turun di Stasiun Bundaran HI, lalu berjalan kaki beberapa menit.</p>
+      </div>
+    </div>
+    <div>
+      <div class="relative overflow-hidden bg-stone-900 h-[440px] border border-[#e3d9c6]">
+        <iframe title="Peta Hotel on Spot" class="w-full h-full border-0 filter grayscale contrast-125 opacity-90" loading="lazy" src="https://www.google.com/maps?q=Jl.+MH+Thamrin+No.+1,+Jakarta+Pusat&output=embed"></iframe>
+      </div>
+      <a class="inline-block bg-transparent text-[#b08a3e] border border-[#b08a3e] px-6 py-3 font-medium cursor-pointer transition hover:bg-[#b08a3e] hover:text-[#1b1a17] mt-4" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Jl.+MH+Thamrin+No.+1+Jakarta+Pusat">Buka di Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- FASILITAS -->
+<section class="view hidden [&.on]:block" id="v-fasilitas">
+  <div class="relative overflow-hidden bg-stone-900 h-[340px] flex items-center justify-center text-white"><img id="fh" class="absolute inset-0 w-full h-full object-cover opacity-60" alt=""><div class="max-w-[1160px] mx-auto px-5 absolute z-20 bottom-10 left-0 right-0 w-full"><h1 class="font-serif text-4xl md:text-5xl font-bold">Fasilitas</h1><p class="mt-2 text-stone-200">Lounge, bar, kolam renang, dan lainnya, lengkap dengan jam operasional.</p></div></div>
+  <div class="py-20 max-w-[1160px] mx-auto px-5 space-y-20" id="fac-list"></div>
+  <div class="max-w-[1160px] mx-auto px-5 pb-20"><h2 class="font-serif text-3xl font-semibold">Layanan tambahan</h2><div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div><div class="grid gap-4 md:grid-cols-3" id="lay-list"></div></div>
+</section>
+
+<!-- RESTO -->
+<section class="view hidden [&.on]:block" id="v-resto">
+  <div class="max-w-[1160px] mx-auto px-5 pt-28 grid grid-cols-2 md:grid-cols-4 gap-3" id="gallery"></div>
+  <div class="py-20 max-w-[1160px] mx-auto px-5">
+    <h1 class="font-serif text-4xl md:text-5xl font-semibold">Restaurant &amp; Bar/Lounge</h1>
+    <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+    <div class="bg-[#fffdf9] border border-[#e3d9c6] p-6 grid gap-5 md:grid-cols-2 shadow-sm">
+      <div><p class="font-serif text-2xl font-semibold">Reservasi meja</p><a class="text-[#b08a3e] text-2xl font-serif font-medium hover:underline" href="tel:+62211234567">(021) 123-4567</a><p class="text-sm text-[#6d675d]">Restoran &amp; Lounge, setiap hari</p></div>
+      <div><p class="font-serif text-2xl font-semibold">Room service</p><a class="text-[#b08a3e] text-2xl font-serif font-medium hover:underline" href="tel:+62211234568">(021) 123-4568 ext. 9</a><p class="text-sm text-[#6d675d]">Diantar langsung ke kamar hotel</p></div>
+    </div>
+    <div class="flex flex-wrap gap-2 mt-12" id="mtabs"></div>
+    <div class="grid gap-12 md:grid-cols-2 mt-8" id="menus"></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="view hidden [&.on]:block" id="v-booking">
+  <div class="py-20 max-w-[1160px] mx-auto px-5 pt-32">
+    <h1 class="font-serif text-4xl md:text-5xl font-semibold">Booking / Kamar</h1>
+    <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+    <p class="mb-10 max-w-2xl text-[#6d675d]">Check-in mulai pukul <span class="ci-t font-semibold"></span>, check-out paling lambat pukul <span class="co-t font-semibold"></span>.</p>
+    <div class="grid gap-7 lg:grid-cols-3" id="rooms"></div>
+
+    <div class="grid gap-10 lg:grid-cols-5 mt-20" id="form-area">
+      <form id="bf" class="bg-[#fffdf9] border border-[#e3d9c6] p-7 lg:col-span-3 grid gap-4 md:grid-cols-2 shadow-sm" novalidate>
+        <h2 class="font-serif text-3xl font-semibold md:col-span-2">Form reservasi</h2>
+        <div><label for="ci" class="text-sm font-normal block mb-1">Tanggal check-in</label><input type="date" id="ci" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="co" class="text-sm font-normal block mb-1">Tanggal check-out</label><input type="date" id="co" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="rt" class="text-sm font-normal block mb-1">Tipe kamar</label><select id="rt" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></select></div>
+        <div><label for="gs" class="text-sm font-normal block mb-1">Jumlah tamu</label><input type="number" id="gs" min="1" max="6" value="2" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="nm" class="text-sm font-normal block mb-1">Nama lengkap tamu</label><input id="nm" autocomplete="name" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="hp" class="text-sm font-normal block mb-1">No. telepon / WhatsApp</label><input id="hp" type="tel" placeholder="08xxxxxxxxxx" autocomplete="tel" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="em" class="text-sm font-normal block mb-1">Email</label><input id="em" type="email" autocomplete="email" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="idn" class="text-sm font-normal block mb-1">No. identitas KTP/paspor (opsional)</label><input id="idn" inputmode="numeric" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div class="md:col-span-2"><label for="al" class="text-sm font-normal block mb-1">Alamat (opsional)</label><input id="al" autocomplete="street-address" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="pr" class="text-sm font-normal block mb-1">Kode promo (opsional)</label><input id="pr" placeholder="SPOT10 / LIBURAN15" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <div><label for="rq" class="text-sm font-normal block mb-1">Permintaan khusus (opsional)</label><input id="rq" class="w-full bg-[#f5efe4] border border-[#e3d9c6] p-3 focus:outline-none focus:border-[#b08a3e]"></div>
+        <p id="err" class="md:col-span-2 text-sm text-red-600 font-medium" role="alert"></p>
+        <button class="bg-[#b08a3e] text-[#1b1a17] py-3.5 px-6 font-medium border border-[#b08a3e] cursor-pointer transition hover:bg-[#d6b36a] md:col-span-2 shadow-sm" type="submit">Buat reservasi &amp; lanjut ke pembayaran</button>
+      </form>
+      <aside class="lg:col-span-2 space-y-5">
+        <div class="bg-[#fffdf9] border border-[#e3d9c6] p-6 shadow-sm"><p class="font-serif text-2xl font-semibold mb-2">Ringkasan</p><div id="sum" class="text-[#6d675d]">Pilih tanggal dan tipe kamar untuk melihat ketersediaan dan estimasi biaya.</div></div>
+        <div class="bg-[#fffdf9] border border-[#e3d9c6] p-6 shadow-sm"><p class="font-serif text-2xl font-semibold mb-2">Kebijakan pembatalan</p><p class="text-[#6d675d]">Pembatalan gratis hingga 48 jam sebelum check-in; setelahnya dikenakan biaya satu malam. Dana yang sudah dibayarkan dikembalikan melalui metode pembayaran semula dalam 3–7 hari kerja.</p></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- PEMBAYARAN -->
+<section class="view hidden [&.on]:block" id="v-bayar"><div class="py-20 max-w-[880px] mx-auto px-5 pt-32"><h1 class="font-serif text-4xl md:text-5xl font-semibold">Pembayaran</h1><div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div><div id="bayar-box"></div></div></section>
+
+<!-- CEK PESANAN -->
+<section class="view hidden [&.on]:block" id="v-pesanan"><div class="py-20 max-w-[880px] mx-auto px-5 pt-32">
+  <h1 class="font-serif text-4xl md:text-5xl font-semibold">Cek Pesanan</h1>
+  <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+  <form id="cf" class="flex gap-3 flex-wrap"><input id="ck" placeholder="Kode booking, contoh: HOS-D3M004" class="bg-[#fffdf9] border border-[#e3d9c6] p-3 flex-1 min-w-[220px] focus:outline-none focus:border-[#b08a3e]"><button class="bg-[#b08a3e] text-[#1b1a17] px-6 py-3 font-medium border border-[#b08a3e] cursor-pointer transition hover:bg-[#d6b36a]" type="submit">Cari</button></form>
+  <div id="pesanan-box" class="mt-8"></div>
+</div></section>
+
+<!-- ULASAN -->
+<section class="view hidden [&.on]:block" id="v-ulasan"><div class="py-20 max-w-[1160px] mx-auto px-5 pt-32">
+  <h1 class="font-serif text-4xl md:text-5xl font-semibold">Ulasan</h1>
+  <div class="w-14 h-0.5 bg-[#b08a3e] my-4 mb-8"></div>
+  <div class="grid gap-10 lg:grid-cols-5">
+    <form id="uf" class="bg-[#fffdf9] border border-[#e3d9c6] p-7 lg:col-span-2 grid gap-4 shadow-sm" novalidate>
+      <h2 class="font-serif text-3xl font-semibold">Tulis ulasan</h2>
+      <p class="text-sm text-[#6d675d]">Ulasan dapat ditulis setelah check-out, memakai kode booking Anda.</p>
+      <div><label for="uk" class="text-sm font-normal block mb-1">Kode booking</label><input id="uk" placeholder="HOS-XXXXXX" class="bg-[#f5efe4] border border-[#e3d9c6] p-3 w-full focus:outline-none focus:border-[#b08a3e]"></div>
+      <div><label for="ur" class="text-sm font-normal block mb-1">Rating</label><select id="ur" class="bg-[#f5efe4] border border-[#e3d9c6] p-3 w-full focus:outline-none focus:border-[#b08a3e]"><option value="5">★★★★★ – Sangat baik</option><option value="4">★★★★ – Baik</option><option value="3">★★★ – Cukup</option><option value="2">★★ – Kurang</option><option value="1">★ – Buruk</option></select></div>
+      <div><label for="ukm" class="text-sm font-normal block mb-1">Komentar</label><textarea id="ukm" rows="4" class="bg-[#f5efe4] border border-[#e3d9c6] p-3 w-full focus:outline-none focus:border-[#b08a3e]"></textarea></div>
+      <p id="uerr" class="text-sm text-red-600 font-medium" role="alert"></p>
+      <button class="bg-[#b08a3e] text-[#1b1a17] py-3.5 px-6 font-medium border border-[#b08a3e] cursor-pointer transition hover:bg-[#d6b36a]" type="submit">Kirim ulasan</button>
+    </form>
+    <div class="lg:col-span-3 space-y-4" id="ulasan-list"></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="bg-[#23211e] text-[#e8e1d3]">
+  <div class="max-w-[1160px] mx-auto px-5 py-16 grid gap-10 md:grid-cols-3">
+    <div><p class="font-serif text-3xl text-[#d6b36a] font-semibold">Hotel on Spot</p><p class="mt-3 text-sm text-stone-400">Menginap nyaman di jantung kota, dengan lounge, bar, kolam renang, dan pelayanan ramah setiap saat.</p></div>
+    <div class="text-sm space-y-2"><p class="font-serif text-2xl mb-2 text-white font-semibold">Kontak &amp; jam</p><p class="text-stone-300">Jl. MH Thamrin No. 1, Jakarta Pusat</p><p class="text-stone-300">Telepon: (021) 123-4567</p><p class="text-stone-300">Email: reservasi@hotelonspot.id</p><p class="text-stone-300">Check-in mulai <span class="ci-t font-semibold"></span> · Check-out paling lambat <span class="co-t font-semibold"></span></p><p class="pt-2"><a href="admin.html" class="text-[#d6b36a] hover:underline font-medium">Login Admin</a></p></div>
+    <div><p class="font-serif text-2xl mb-3 text-white font-semibold">Ikuti kami</p><div class="flex gap-3" id="soc"></div></div>
+  </div>
+  <p class="text-center text-xs pb-6 text-stone-500">© 2026 Hotel on Spot. Semua hak dilindungi.</p>
+</footer>
+
+<button id="top" aria-label="Kembali ke atas" class="fixed right-5 bottom-5 z-45 w-12 h-12 rounded-full bg-[#b08a3e] text-[#1b1a17] cursor-pointer hidden items-center justify-center font-bold text-lg shadow-xl transition hover:bg-[#d6b36a]">↑</button>
+<div id="toast" role="status" class="fixed left-1/2 bottom-6 -translate-x-1/2 bg-[#23211e] text-white px-5 py-3 z-50 hidden shadow-2xl rounded text-sm font-medium"></div>
+<div class="fixed inset-0 z-80 bg-black/80 hidden items-center justify-center p-4 backdrop-blur-sm" id="ov"><button class="absolute top-4 right-6 text-3xl text-white cursor-pointer z-50 hover:text-[#d6b36a]" aria-label="Tutup">×</button><div id="ovc" class="relative max-w-full w-full flex justify-center"></div></div>
+
+<script src="db.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
